@@ -1,5 +1,7 @@
 FROM node:lts-alpine AS dep
 
+ARG REF
+
 ENV PNPM_HOME="/pnpm"
 
 ENV PATH="$PNPM_HOME:$PATH"
@@ -8,7 +10,7 @@ WORKDIR /app
 
 RUN corepack enable
 
-ADD https://github.com/itteco/iframely.git#v2.4.3 /app
+ADD https://github.com/itteco/iframely.git#$REF /app
 
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
 
