@@ -14,6 +14,8 @@ ADD https://github.com/itteco/iframely.git#$REF /app
 
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
 
+RUN rm -rf .github ansible-docker-iframely docker docs
+
 FROM gcr.io/distroless/nodejs22-debian12:nonroot
 
 WORKDIR /app
